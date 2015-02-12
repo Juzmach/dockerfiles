@@ -3,9 +3,8 @@ MAINTAINER Juuso Strömberg
 RUN apt-get update
 RUN apt-get install -y openssh-server screen irssi mosh
 RUN mkdir /var/run/sshd
-RUN useradd -m -G users irssi
 ADD .userfile /
-RUN cat .userfile | chpasswd
+RUN newusers .userfile
 RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin no/' /etc/ssh/sshd_config
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 ENV NOTVISIBLE "in users profile"

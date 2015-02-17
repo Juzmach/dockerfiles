@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 MAINTAINER Juuso Strömberg
 RUN apt-get update
-RUN apt-get install -y openssh-server screen irssi mosh
+RUN apt-get install -y openssh-server screen irssi mosh oidentd
 RUN mkdir /var/run/sshd
 ADD .userfile /
 RUN newusers .userfile
